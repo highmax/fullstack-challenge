@@ -55,8 +55,7 @@ export class ReqresService {
       return { token: data.token };
     } catch (error: any) {
       const status = error.response?.status || HttpStatus.UNAUTHORIZED;
-      const message =
-        error.response?.data?.error || 'Invalid credentials';
+      const message = error.response?.data?.error || 'Invalid credentials';
       this.logger.warn(`Login failed: ${message}`);
       throw new HttpException(message, status);
     }
@@ -65,42 +64,31 @@ export class ReqresService {
   async getUsers(page: number = 1): Promise<ReqresUsersListResponse> {
     try {
       const { data } = await firstValueFrom(
-        this.httpService.get<ReqresUsersListResponse>(
-          `${this.baseUrl}/users?page=${page}`,
-          { headers: this.getHeaders() },
-        ),
+        this.httpService.get<ReqresUsersListResponse>(`${this.baseUrl}/users?page=${page}`, {
+          headers: this.getHeaders(),
+        }),
       );
       return data;
     } catch (error: any) {
       this.logger.error(`Failed to fetch users: ${error.message}`);
-      throw new HttpException(
-        'Failed to fetch users from ReqRes',
-        HttpStatus.BAD_GATEWAY,
-      );
+      throw new HttpException('Failed to fetch users from ReqRes', HttpStatus.BAD_GATEWAY);
     }
   }
 
   async getUserById(id: number): Promise<ReqresUser> {
     try {
       const { data } = await firstValueFrom(
-        this.httpService.get<ReqresUserResponse>(
-          `${this.baseUrl}/users/${id}`,
-          { headers: this.getHeaders() },
-        ),
+        this.httpService.get<ReqresUserResponse>(`${this.baseUrl}/users/${id}`, {
+          headers: this.getHeaders(),
+        }),
       );
       return data.data;
     } catch (error: any) {
       if (error.response?.status === 404) {
-        throw new HttpException(
-          `User with ID ${id} not found in ReqRes`,
-          HttpStatus.NOT_FOUND,
-        );
+        throw new HttpException(`User with ID ${id} not found in ReqRes`, HttpStatus.NOT_FOUND);
       }
       this.logger.error(`Failed to fetch user ${id}: ${error.message}`);
-      throw new HttpException(
-        'Failed to fetch user from ReqRes',
-        HttpStatus.BAD_GATEWAY,
-      );
+      throw new HttpException('Failed to fetch user from ReqRes', HttpStatus.BAD_GATEWAY);
     }
   }
 }

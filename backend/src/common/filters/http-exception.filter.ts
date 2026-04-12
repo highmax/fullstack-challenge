@@ -31,14 +31,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
         message = resp.message || exception.message;
       }
     } else if (exception instanceof Error) {
-      this.logger.error(
-        `Unhandled exception: ${exception.message}`,
-        exception.stack,
-      );
-      message =
-        process.env.NODE_ENV === 'production'
-          ? 'Internal server error'
-          : exception.message;
+      this.logger.error(`Unhandled exception: ${exception.message}`, exception.stack);
+      message = process.env.NODE_ENV === 'production' ? 'Internal server error' : exception.message;
     }
 
     response.status(status).json({

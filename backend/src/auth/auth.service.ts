@@ -7,10 +7,7 @@ export class AuthService {
   constructor(private readonly reqresService: ReqresService) {}
 
   async login(loginDto: LoginDto) {
-    const { token } = await this.reqresService.login(
-      loginDto.email,
-      loginDto.password,
-    );
+    const { token } = await this.reqresService.login(loginDto.email, loginDto.password);
 
     return {
       token,

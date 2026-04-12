@@ -1,9 +1,4 @@
-import {
-  Injectable,
-  ConflictException,
-  NotFoundException,
-  Logger,
-} from '@nestjs/common';
+import { Injectable, ConflictException, NotFoundException, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from './schemas/user.schema';
@@ -21,9 +16,7 @@ export class UsersService {
   async importFromReqres(reqresId: number): Promise<UserDocument> {
     const existing = await this.userModel.findOne({ reqresId }).exec();
     if (existing) {
-      throw new ConflictException(
-        `User with ReqRes ID ${reqresId} is already saved locally`,
-      );
+      throw new ConflictException(`User with ReqRes ID ${reqresId} is already saved locally`);
     }
 
     const reqresUser = await this.reqresService.getUserById(reqresId);
