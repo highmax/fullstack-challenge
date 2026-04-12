@@ -1,0 +1,16 @@
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: user-posts-portal-db
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: user-posts-portal
+
+volumes:
+  mongodb_data:
+    driver: local
