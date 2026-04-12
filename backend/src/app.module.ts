@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
-// import { UsersModule } from './users/users.module';
+import { UsersModule } from './users/users.module';
 import { ReqresModule } from './reqres/reqres.module';
 import { databaseConfig } from './config/database.config';
 import { appConfig } from './config/app.config';
@@ -19,7 +19,7 @@ import { appConfig } from './config/app.config';
       }),
     }),
     AuthModule,
-    // UsersModule,
+    UsersModule,
     ReqresModule,
   ],
 })
