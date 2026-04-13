@@ -6,6 +6,7 @@ import { User } from '@/types';
 import Loading from '@/components/ui/Loading';
 import EmptyState from '@/components/ui/EmptyState';
 import Button from '@/components/ui/Button';
+import Image from 'next/image';
 
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
@@ -87,10 +88,12 @@ export default function UsersPage() {
               key={user.id}
               className="bg-white p-4 rounded-xl border border-gray-200 flex items-center gap-4"
             >
-              <img
+              <Image
                 src={user.avatar}
                 alt={`${user.first_name} ${user.last_name}`}
                 className="w-12 h-12 rounded-full"
+                width={20}
+                height={20}
               />
               <div className="flex-1 min-w-0">
                 <p className="font-medium text-gray-900 truncate">
