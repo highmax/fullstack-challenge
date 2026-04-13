@@ -3,12 +3,14 @@
 Fullstack application built with **NestJS**, **Next.js**, and **MongoDB**. Integrates with [ReqRes API](https://reqres.in/) for user data and authentication.
 
 ## Architecture
-
+```
 fullstack-challenge/
+|
 ├── backend/ # NestJS + TypeScript (Port 4000)
 ├── frontend/ # Next.js + TypeScript + Tailwind (Port 3000)
 ├── docker-compose.yml # MongoDB
 └── README.md
+```
 
 ### Backend Modules
 
