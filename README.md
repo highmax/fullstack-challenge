@@ -3,6 +3,7 @@
 Fullstack application built with **NestJS**, **Next.js**, and **MongoDB**. Integrates with [ReqRes API](https://reqres.in/) for user data and authentication.
 
 ## Architecture
+
 ```
 fullstack-challenge/
 |
@@ -144,6 +145,11 @@ Required: AWS credentials configured, environment variables set in Lambda consol
 cd frontend
 npx vercel
 ```
+
+### Live URLs
+
+- **Frontend**: https://fullstack-challenge-rho.vercel.app
+- **Backend**: https://dmzb9xg9s0.execute-api.us-east-1.amazonaws.com/prod/api
 
 Set `NEXT_PUBLIC_API_URL` to your API Gateway endpoint URL in Vercel environment settings.
 
